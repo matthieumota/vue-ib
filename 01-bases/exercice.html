@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Premier exercice Vue JS</title>
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app" v-cloak>
+            <h1>{{ title }}</h1>
+            <ul v-if="shown">
+                <li v-for="recipe in recipes">
+                    {{ recipe }}
+                </li>
+            </ul>
+            <button @click="toggle">Afficher / Cacher la liste</button>
+        </div>
+
+        <script type="module">
+            import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+            createApp({
+                setup() {
+                    const title = 'Recettes';
+                    const recipes = ['Couscous', 'Fondue', 'Salade César'];
+                    const shown = ref(true);
+
+                    const toggle = () => shown.value = !shown.value;
+
+                    return { title, recipes, shown, toggle };
+                },
+            }).mount('#app');
+        </script>
+    </body>
+
+</html>

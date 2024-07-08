@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Vue JS</title>
+        <style>
+            .bold {
+                font-weight: 700;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <h1 :title="title">
+                {{ title }}
+            </h1>
+            <button :disabled="!isEnabled">Valider</button>
+            <p v-if="count >= 0 && count < 10"
+               :class="{ bold: count >= 5 }"
+               :style="{ backgroundColor: count > 5 ? 'red' : 'inherit' }"
+            >
+                La valeur count est supérieure à 0
+            </p>
+            <p v-else-if="count >= 10">La valeur count est supérieure à 10</p>
+            <div v-else>
+                <p>La valeur count est égale à 0 ou moins</p>
+            </div>
+            <p>Valeur de count : {{ count }}</p>
+            <p>Count + 10 : {{ count + 10 }} et titre en majuscule : {{ title.toUpperCase() }}</p>
+            <button @click="count += 1">Augmenter count</button>
+            <button @click="count = -10">Mettre count à -10</button>
+            <input type="text" v-model="title">
+            <input type="text" :value="title" @input="title = $event.target.value">
+            <button onclick="console.log(event)">Doute</button>
+            <button @click="resetTitle($event, 1)">Reset le titre</button>
+            <input type="checkbox" v-model="isEnabled">
+
+            <ul>
+                <li v-for="(contact, index) in contacts">
+                    {{ contact }} ({{ index }})
+                </li>
+            </ul>
+            <input type="checkbox" value="Fiorella" v-model="contacts" id="c1">
+            <label for="c1">Fiorella</label>
+            <input type="checkbox" value="Mathieu" v-model="contacts" id="c2">
+            <label for="c2">Mathieu</label>
+            <input type="checkbox" value="Matthieu" v-model="contacts" id="c3">
+            <label for="c3">Matthieu</label>
+            <input type="checkbox" value="Marina" v-model="contacts" id="c4">
+            <label for="c4">Marina</label>
+
+            <ul>
+                <li v-for="car in cars" :key="car.id">
+                    {{ car.brand }} {{ car.model }}
+                </li>
+            </ul>
+        </div>
+
+        <script type="module">
+            import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+            createApp({
+                setup() {
+                    const title = ref('Mon application');
+                    const isEnabled = ref(true);
+                    const count = ref(0);
+                    const contacts = ref(['Mathieu']);
+                    const cars = ref([
+                        { id: 1, brand: 'Renault', model: 'Mégane' },
+                        { id: 2, brand: 'Peugeot', model: '208' },
+                        { id: 3, brand: 'Citroen', model: 'C3' },
+                    ]);
+
+                    const resetTitle = (event, monParam) => {
+                        // event.currentTarget renvoie le <button> (l'élément qui a subit le clic)
+                        console.log(event.currentTarget.innerText, monParam);
+                        // title.value = 'Mon application';
+                        title.value = event.currentTarget.innerText;
+                    }
+
+                    return { title, isEnabled, count, contacts, cars, resetTitle };
+                },
+            }).mount('#app');
+        </script>
+    </body>
+
+</html>

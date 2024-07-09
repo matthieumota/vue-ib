@@ -1,5 +1,5 @@
 <template>
-  <Navbar :title="title" theme="dark" />
+  <Navbar :title="title" theme="light" />
 
   {{ html }}
   <span v-html="html"></span> <!-- Attention aux failles XSS -->
@@ -23,10 +23,13 @@
   <SuperProduct />
   <SuperProduct />
   <SuperProduct />
+
+  <AppFooter :year="2024" version="0.0.1" />
 </template>
 
 <script setup>
 import { computed, ref } from 'vue'
+import AppFooter from './components/AppFooter.vue'
 import SuperProduct from './SuperProduct.vue'
 import Navbar from './components/Navbar.vue'
 

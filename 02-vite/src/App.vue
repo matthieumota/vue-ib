@@ -1,5 +1,6 @@
 <template>
-  <h1>{{ title }}</h1>
+  <Navbar :title="title" theme="dark" />
+
   {{ html }}
   <span v-html="html"></span> <!-- Attention aux failles XSS -->
 
@@ -25,32 +26,33 @@
 </template>
 
 <script setup>
-  import { computed, ref } from 'vue'
-  import SuperProduct from './SuperProduct.vue'
+import { computed, ref } from 'vue'
+import SuperProduct from './SuperProduct.vue'
+import Navbar from './components/Navbar.vue'
 
-  const title = ref('Mon application Vue JS')
-  const html = ref('<h2>Du HTML</h2>')
+const title = ref('Mon application Vue JS')
+const html = ref('<h2>Du HTML</h2>')
 
-  const name = ref('Fiorella');
-  const letters = ref(['baba', 'allo', 'dede', 'ello', 'charles']);
+const name = ref('Fiorella')
+const letters = ref(['baba', 'allo', 'dede', 'ello', 'charles'])
 
-  // Une computed est une valeur qui est calculée à partir d'une ref
-  const reverse = computed(() => {
-    console.log('call');
-    return name.value.split('').reverse().join('');
+// Une computed est une valeur qui est calculée à partir d'une ref
+const reverse = computed(() => {
+  console.log('call')
+  return name.value.split('').reverse().join('')
+})
+
+const sortedLetters = computed(() => {
+  // let array = ['a', 'b', 'c']
+  // let array2 = array // Ici, c'est le même tableau
+  // let array3 = [...array] // Ici, c'est une copie du tableau donc un 2ème tableau
+  return [...letters.value].sort((a, b) => {
+    console.log('Abc')
+    return a < b ? -1 : 1
   })
+})
 
-  const sortedLetters = computed(() => {
-    // let array = ['a', 'b', 'c']
-    // let array2 = array // Ici, c'est le même tableau
-    // let array3 = [...array] // Ici, c'est une copie du tableau donc un 2ème tableau
-    return [...letters.value].sort((a, b) => {
-      console.log('Abc');
-      return a < b ? -1 : 1;
-    });
-  });
-
-  const thirdLetters = computed(() => {
-    return sortedLetters.value.slice(0, 3);
-  });
+const thirdLetters = computed(() => {
+  return sortedLetters.value.slice(0, 3)
+})
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="product">
         <div>
-            <img :src="image" :alt="fullName">
+            <img :src="variation.image" :alt="fullName">
         </div>
         <div>
             <h1>{{ fullName }}</h1>
@@ -22,7 +22,7 @@
                 <div v-for="(variation, index) in variations"
                      :class="{ square: true, active: selected === index }"
                      :style="{ backgroundColor: variation.color }"
-                     @click="selected = index"
+                     @click="choose(index)"
                 ></div>
             </div>
         </div>
@@ -40,15 +40,14 @@
     const stock = ref(100);
     const features = ref(['Mignon', 'Affectueux', 'Gourmand']);
     const variations = ref([
-        { color: 'blue', price: 0 },
-        { color: 'red', price: 2 },
+        { color: 'blue', price: 0, image: 'https://www.zooplus.fr/magazine/wp-content/uploads/2022/03/kitten-sitzt-boden-768x512-1.jpeg' },
+        { color: 'red', price: 2, image: 'https://cdn.shopify.com/s/files/1/0265/1327/7008/files/comment-accueillir-un-chaton.jpg' },
     ]);
 
     const quantity = ref(1);
     const selected = ref(0); // Variation sélectionnée
 
     const fullName = computed(() => brand.value + ' ' + name.value);
-    const variation = computed(() => variations.value[selected.value]);
     const total = computed(() => {
         // Exemple et test
         const numberFormat = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
@@ -56,6 +55,9 @@
 
         return numberFormat.format((price.value + variation.value.price) * quantity.value);
     });
+    const variation = computed(() => variations.value[selected.value]); // Renvoie la variation actuelle (objet)
+
+    const choose = (index) => selected.value = index;
 </script>
 
 <style scoped>

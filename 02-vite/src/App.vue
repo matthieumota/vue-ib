@@ -18,10 +18,15 @@
     </li>
   </ul>
   <input type="checkbox" value="alban" v-model="letters"> Alban
+
+  <SuperProduct />
+  <SuperProduct />
+  <SuperProduct />
 </template>
 
 <script setup>
   import { computed, ref } from 'vue'
+  import SuperProduct from './SuperProduct.vue'
 
   const title = ref('Mon application Vue JS')
   const html = ref('<h2>Du HTML</h2>')

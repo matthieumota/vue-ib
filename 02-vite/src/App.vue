@@ -20,9 +20,7 @@
   </ul>
   <input type="checkbox" value="alban" v-model="letters"> Alban
 
-  <SuperProduct />
-  <SuperProduct />
-  <SuperProduct />
+  <SuperProduct :product="product" v-for="product in products" />
 
   <AppFooter :year="2024" version="0.0.1" />
 </template>
@@ -32,6 +30,42 @@ import { computed, ref } from 'vue'
 import AppFooter from './components/AppFooter.vue'
 import SuperProduct from './SuperProduct.vue'
 import Navbar from './components/Navbar.vue'
+
+const products = ref([
+  {
+    brand: 'Brand A',
+    name: 'Cat A',
+    image: 'https://www.zooplus.fr/magazine/wp-content/uploads/2022/03/kitten-sitzt-boden-768x512-1.jpeg',
+    price: 8.99,
+    stock: 70,
+    features: ['Mignon', 'Affectueux', 'Gourmand'],
+    variations: [
+      { color: 'blue', price: 0, image: 'https://www.zooplus.fr/magazine/wp-content/uploads/2022/03/kitten-sitzt-boden-768x512-1.jpeg' },
+      { color: 'red', price: 2, image: 'https://cdn.shopify.com/s/files/1/0265/1327/7008/files/comment-accueillir-un-chaton.jpg' },
+    ],
+  },
+  {
+    brand: 'Brand B',
+    name: 'Cat B',
+    image: 'https://cdn.shopify.com/s/files/1/0265/1327/7008/files/comment-accueillir-un-chaton.jpg',
+    price: 9.99,
+    stock: 80,
+    features: ['Mignon', 'Gourmand'],
+    variations: [],
+  },
+  {
+    brand: 'Brand C',
+    name: 'Cat C',
+    image: 'https://www.zooplus.fr/magazine/wp-content/uploads/2022/03/kitten-sitzt-boden-768x512-1.jpeg',
+    price: 10.99,
+    stock: 90,
+    features: ['Mignon', 'Affectueux'],
+    variations: [
+      { color: 'purple', price: 0, image: 'https://www.zooplus.fr/magazine/wp-content/uploads/2022/03/kitten-sitzt-boden-768x512-1.jpeg' },
+      { color: 'brown', price: 2, image: 'https://cdn.shopify.com/s/files/1/0265/1327/7008/files/comment-accueillir-un-chaton.jpg' },
+    ],
+  }
+]);
 
 const title = ref('Mon application Vue JS')
 const html = ref('<h2>Du HTML</h2>')

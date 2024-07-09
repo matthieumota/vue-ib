@@ -20,6 +20,14 @@
   </ul>
   <input type="checkbox" value="alban" v-model="letters"> Alban
 
+  <Title value="Mon titre" />
+
+  {{ total }}
+
+  <Counter @incremented="(value) => total += value" />
+  <Counter :start="5" :max="10" @incremented="(value) => total += value" />
+  <Counter :start="89" :max="100" @incremented="(value) => total += value" />
+
   <SuperProduct
     v-for="product in products"
     :product="product"
@@ -36,6 +44,8 @@ import { computed, ref } from 'vue'
 import AppFooter from './components/AppFooter.vue'
 import SuperProduct from './SuperProduct.vue'
 import Navbar from './components/Navbar.vue'
+import Title from './components/Title.vue'
+import Counter from './components/Counter.vue'
 
 const incrementTotal = (event, product) => {
   // @todo Améliorer le panier pour éviter les doublons
@@ -47,6 +57,8 @@ const incrementTotal = (event, product) => {
 const cart = ref([
   // { name: 'Blabla', quantity: 10, variation: 0 },
 ]);
+
+const total = ref(94); // Pour l'exercice du compteur...
 
 const products = ref([
   {

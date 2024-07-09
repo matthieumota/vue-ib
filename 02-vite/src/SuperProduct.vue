@@ -26,6 +26,8 @@
                      @click="choose(index)"
                 ></div>
             </div>
+
+            <button @click="add">Ajouter au panier</button>
         </div>
     </div>
 </template>
@@ -33,7 +35,15 @@
 <script setup>
     import { computed, ref, watch } from 'vue';
 
-    const props = defineProps(['product']);
+    const props = defineProps(['product']); // Entrée de données dans le composant
+    const emit = defineEmits(['addedToCart']); // Evénements que l'on peut déclencher
+
+    const add = () => {
+        emit('addedToCart', {
+            quantity: quantity.value, // 5
+            variation: selected.value, // 0
+        }); // On emet un événément qu'on peut écouter plus tard
+    }
 
     // Ref pour le produit
 

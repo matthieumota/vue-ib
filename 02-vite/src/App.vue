@@ -20,7 +20,13 @@
   </ul>
   <input type="checkbox" value="alban" v-model="letters"> Alban
 
-  <SuperProduct :product="product" v-for="product in products" />
+  <SuperProduct
+    v-for="product in products"
+    :product="product"
+    @added-to-cart="incrementTotal($event, product)"
+  />
+
+  {{ cart }}
 
   <AppFooter :year="2024" version="0.0.1" />
 </template>
@@ -30,6 +36,17 @@ import { computed, ref } from 'vue'
 import AppFooter from './components/AppFooter.vue'
 import SuperProduct from './SuperProduct.vue'
 import Navbar from './components/Navbar.vue'
+
+const incrementTotal = (event, product) => {
+  // @todo Améliorer le panier pour éviter les doublons
+  cart.value.push({
+    name: product.name, quantity: event.quantity, variation: event.variation
+  });
+}
+
+const cart = ref([
+  // { name: 'Blabla', quantity: 10, variation: 0 },
+]);
 
 const products = ref([
   {

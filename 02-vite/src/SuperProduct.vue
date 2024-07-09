@@ -7,7 +7,8 @@
             <h1>{{ fullName }}</h1>
 
             <p>{{ total }}</p>
-            <input type="number" v-model="quantity">
+            <input type="number" v-model="quantity" @change="notify">
+            <button @click="quantity++; /*notify()*/">+</button>
 
             <p class="in-stock" v-if="stock > 0 && quantity <= stock">En stock</p>
             <p class="out-stock" v-else>Pas assez de stock</p>
@@ -30,7 +31,7 @@
 </template>
 
 <script setup>
-    import { computed, ref } from 'vue';
+    import { computed, ref, watch } from 'vue';
 
     // Ref pour le produit
     const brand = ref('Brand');
@@ -58,6 +59,15 @@
     const variation = computed(() => variations.value[selected.value]); // Renvoie la variation actuelle (objet)
 
     const choose = (index) => selected.value = index;
+
+    const notify = () => 'alert(quantity.value)';
+
+    // J'écoute quand il y a un changement sur la ref quantity
+    watch(quantity, (newValue, oldValue) => {
+        if (newValue >= stock.value) {
+            alert(`Vous avez choisi ${newValue} et le stock est de ${stock.value}`);
+        }
+    });
 </script>
 
 <style scoped>

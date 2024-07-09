@@ -28,6 +28,8 @@
   <Counter :start="5" :max="10" @incremented="(value) => total += value" />
   <Counter :start="89" :max="100" @incremented="(value) => total += value" />
 
+  <Ajax />
+
   <SuperProduct
     v-for="product in products"
     :product="product"
@@ -46,6 +48,7 @@ import SuperProduct from './SuperProduct.vue'
 import Navbar from './components/Navbar.vue'
 import Title from './components/Title.vue'
 import Counter from './components/Counter.vue'
+import Ajax from './components/Ajax.vue'
 
 const incrementTotal = (event, product) => {
   // @todo Améliorer le panier pour éviter les doublons

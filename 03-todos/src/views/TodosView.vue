@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  ACCUEIL
+  TODOS
 </template>

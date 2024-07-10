@@ -1,11 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <header>
-    <HelloWorld msg="You did it!" />
+    <h1>Les todos</h1>
 
     <nav>
       <RouterLink to="/">Accueil</RouterLink>
@@ -16,4 +15,8 @@ import HelloWorld from './components/HelloWorld.vue'
   <RouterView />
 </template>
 
-<style scoped></style>
+<style>
+  body {
+    background-color: lightgray;
+  }
+</style>

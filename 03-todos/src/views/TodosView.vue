@@ -28,7 +28,7 @@ onMounted(() => {
   axios.get('http://localhost:3000/todos').then(response => {
     todos.value = response.data;
   }).finally(() => {
-    setTimeout(() => loading.value = false, 1000);
+    setTimeout(() => loading.value = false, 200);
   });
 });
 </script>

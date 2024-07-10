@@ -34,6 +34,11 @@ const fetchPosts = () => {
 
     axios.get('https://jsonplaceholder.typicode.com/posts?_page='+page.value).then(response => {
         posts.value = response.data;
+
+        if (posts.value.length === 0) { // Si on va sur la page 11, on revient sur la page 1
+            page.value = 1;
+            followPage(0);
+        }
     }).finally(() => { // Se lance dans tous les cas
         setTimeout(() => loading.value = false, 2000);
     });

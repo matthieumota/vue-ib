@@ -1,4 +1,6 @@
 <script setup>
+    import { RouterLink } from 'vue-router';
+
     defineProps(['title', 'theme']);
 </script>
 
@@ -6,8 +8,8 @@
     <div class="navbar" :class="{ dark: theme !== 'light' }">
         <h1>{{ title ?? 'Menu' }}</h1>
         <nav>
-            <a href="#">Accueil</a>
-            <a href="#">A propos</a>
+            <RouterLink to="/">Accueil</RouterLink>
+            <RouterLink to="/articles">Articles</RouterLink>
         </nav>
     </div>
 </template>

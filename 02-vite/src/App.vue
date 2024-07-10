@@ -1,6 +1,8 @@
 <template>
   <Navbar :title="title" theme="light" />
 
+  <RouterView />
+
   {{ html }}
   <span v-html="html"></span> <!-- Attention aux failles XSS -->
 
@@ -49,6 +51,7 @@ import Navbar from './components/Navbar.vue'
 import Title from './components/Title.vue'
 import Counter from './components/Counter.vue'
 import Ajax from './components/Ajax.vue'
+import { RouterView } from 'vue-router'
 
 const incrementTotal = (event, product) => {
   // @todo Améliorer le panier pour éviter les doublons

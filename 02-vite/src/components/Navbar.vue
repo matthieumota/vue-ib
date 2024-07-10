@@ -10,6 +10,7 @@
         <nav>
             <RouterLink to="/">Accueil</RouterLink>
             <RouterLink to="/articles">Articles</RouterLink>
+            <RouterLink to="/pays">Pays</RouterLink>
         </nav>
     </div>
 </template>

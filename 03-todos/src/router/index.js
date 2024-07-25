@@ -21,6 +21,11 @@ const router = createRouter({
       path: '/todo/:id',
       name: 'todo',
       component: () => import('../views/TodoView.vue')
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: () => import('../views/FormView.vue')
     }
   ]
 })
